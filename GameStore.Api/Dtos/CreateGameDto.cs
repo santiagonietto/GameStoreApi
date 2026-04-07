@@ -1,10 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace GameStore.Api.Dtos;
 
 //* No se le crea un id al post porque usualmente eso lo crea el servidor
 
+//*[REQUIRED] para exigir que el campo contenga lo esperado.
+//*[StringLength(largo)] para limitar el largo del string.
 public record CreateGameDto(
-    string Name,
-    string Genre,
-    decimal Price,
-    DateOnly ReleaseDate
+    [Required][StringLength(50)] string Name,
+    [Required][StringLength(20)] string Genre,
+    [Range(1, 100)] decimal Price,
+    [Required] DateOnly ReleaseDate
 );
