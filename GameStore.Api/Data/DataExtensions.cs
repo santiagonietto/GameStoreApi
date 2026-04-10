@@ -18,6 +18,12 @@ public static class DataExtensions
     {
         var connString = builder.Configuration.GetConnectionString("GameStore");
 
+        //* DbContext tiene un Scoped service de por vida porque:
+        //* 1. Se asegura de que una nueva instancia de DbContext is creada por request
+        //* 2. Las conexiones con la DB son limitadas y un recurso caro.
+        //* 3. DbContext no es seguro para subprocesos. Scoped evita errores que pasan todo el tiempo.
+        //* 4. Hace mas facil manejar transacciones y garantizar la coherencia de los datos.
+        //* 5. Reusar una instancia de DbContext puede llevar a incrementar el uso de memoria.
         builder.Services.AddSqlite<GameStoreContext>(
             connString,
             optionsAction: options => options.UseSeeding((context, _) =>

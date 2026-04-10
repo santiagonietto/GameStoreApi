@@ -6,7 +6,7 @@ namespace GameStore.Api.Dtos;
 //* Una clase de tipo "record" es una clase optimizada para almacenar datos inmutables
 //* y modelar estructuras de datos simples. Ideales para DTOs(Data Transfer Objects).
 
-public record GameDto(
+public record GameSummaryDto(
     int Id,
     string Name,
     string Genre,

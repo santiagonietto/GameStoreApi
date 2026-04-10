@@ -8,7 +8,7 @@ namespace GameStore.Api.Dtos;
 //*[StringLength(largo)] para limitar el largo del string.
 public record CreateGameDto(
     [Required][StringLength(50)] string Name,
-    [Required][StringLength(20)] string Genre,
+    [Range(1, 50)] int GenreId,
     [Range(1, 100)] decimal Price,
     [Required] DateOnly ReleaseDate
 );
